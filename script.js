@@ -18,37 +18,6 @@ function adicionarGasto() {
       data: new Date().toLocaleDateString(),
     };
 
-    function editarItem(id) {
-    // Busca o item na nossa "matriz" pelo ID
-    const itemParaEditar = carteira.find(it => it.id === id);
-    
-    if (itemParaEditar) {
-        const novoNome = prompt("Novo nome do ativo:", itemParaEditar.item);
-        const novoValor = prompt("Novo valor (use ponto para centavos):", itemParaEditar.valor);
-
-        if (novoNome && !isNaN(parseFloat(novoValor))) {
-            itemParaEditar.item = novoNome;
-            itemParaEditar.valor = parseFloat(novoValor);
-            salvarEDesenhar();
-          }
-      }
-  }
-
-  function excluirItem(id) {
-    if (confirm("Deseja remover este registro?")) {
-        carteira = carteira.filter(it => it.id !== id);
-        salvarEDesenhar();
-      }
-    }
-    function formatarMoeda(valor) {
-    return valor.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });
-}
-
-  function salvarEDesenhar() {
-    localStorage.setItem('minhaCarteira', JSON.stringify(carteira));
-    atualizarInterface();
-    }
-
     // Adiciona na nossa matriz flexível
     carteira.push(novoItem);
 
@@ -62,6 +31,39 @@ function adicionarGasto() {
   } else {
     alert("Preencha os campos corretamente!");
   }
+}
+function editarItem(id) {
+  // Busca o item na nossa "matriz" pelo ID
+  const itemParaEditar = carteira.find((it) => it.id === id);
+
+  if (itemParaEditar) {
+    const novoNome = prompt("Novo nome do ativo:", itemParaEditar.item);
+    const novoValor = prompt(
+      "Novo valor (use ponto para centavos):",
+      itemParaEditar.valor,
+    );
+
+    if (novoNome && !isNaN(parseFloat(novoValor))) {
+      itemParaEditar.item = novoNome;
+      itemParaEditar.valor = parseFloat(novoValor);
+      salvarEDesenhar();
+    }
+  }
+}
+
+function excluirItem(id) {
+  if (confirm("Deseja remover este registro?")) {
+    carteira = carteira.filter((it) => it.id !== id);
+    salvarEDesenhar();
+  }
+}
+function formatarMoeda(valor) {
+  return valor.toLocaleString("pt-br", { style: "currency", currency: "BRL" });
+}
+
+function salvarEDesenhar() {
+  localStorage.setItem("minhaCarteira", JSON.stringify(carteira));
+  atualizarInterface();
 }
 
 function atualizarInterface() {
