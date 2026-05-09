@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Meu Dashboard Financeiro</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>💰 Controle de Investimentos</h1>
+
+      <div class="form-grupo">
+        <input
+          type="text"
+          id="descricao"
+          placeholder="Ex: CDB Nubank ou MXRF11"
+        />
+        <input type="number" id="valor" placeholder="Valor (R$)" />
+        <button onclick="adicionarGasto()">Adicionar</button>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Data</th>
+            <th>Item / Ativo</th>
+            <th>Valor</th>
+          </tr>
+        </thead>
+        <tbody id="tabelaCorpo">
+          <!-- As linhas da matriz entrarão aqui via JS -->
+        </tbody>
+      </table>
+
+      <div class="totalizador">
+        Total Acumulado: <span id="valorTotal">R$ 0,00</span>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
